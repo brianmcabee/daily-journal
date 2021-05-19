@@ -1,0 +1,25 @@
+<%- include('partials/header');  -%>
+
+    <div class="starting-text">
+      <h1>What's On Your Mind?</h1>
+      <p>To start, click the compose button, This will take you to a prompt that allows you to create a journal entry along with a title.</p>
+      <p>Use this journal for anything! Daily tracking. Emotions. Happy or sad times. It's up to you.</p>
+    </div>
+
+    <!-- loop thru all entry objs and get all titles and content on page -->
+    <% entries.forEach(entry => { %>
+      <h2> <a class="title-link" href="/entry/<%= entry.title %>"><%= entry.title %></a> </h2>
+      <p>
+        <% if (entry.content.length < subStrlen) {%>
+          <%= entry.content %>
+        <% } else { %>
+          <%= entry.content.substring(0,100)+"..." %>
+          <a href="/entry/<%= entry.title %>">Read More</a>
+        <% } %>
+      </p>
+    <% } ); %>
+
+    <!-- compose button -->
+    <a href="/compose" class="btn btn-primary">Compose</a>
+
+<%- include('partials/footer'); -%>
